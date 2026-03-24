@@ -233,74 +233,26 @@ export default function GetTherePage() {
 
               {/* Tours */}
               <TabsContent value="tour">
-                {/* City CTA cards — linked */}
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
+                {/* 3 city CTA cards — each links directly to agency page */}
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-10">
                   {[
-                    { city: "Chania", href: "/Travel-Agencies-Chania.html", count: "9 agencies", desc: "Closest city · most buses depart from here" },
-                    { city: "Rethymnon", href: "/Travel-Agencies-Rethymnon.html", count: "4 agencies", desc: "Central Crete · hotel pick-up often included" },
-                    { city: "Heraklion", href: "/Travel-Agencies-Heraklion.html", count: "4 agencies", desc: "Eastern Crete · full-day coach trips" },
+                    { city: "Chania", href: "/Travel-Agencies-Chania.html", count: "9 agencies", desc: "Closest city to the gorge. Most buses depart from Chania. Transport, guide and ferry return included." },
+                    { city: "Rethymnon", href: "/Travel-Agencies-Rethymnon.html", count: "4 agencies", desc: "Central Crete. Hotel pick-up often included. Full-day organized excursions." },
+                    { city: "Heraklion", href: "/Travel-Agencies-Heraklion.html", count: "4 agencies", desc: "Eastern Crete. Full-day coach trips with experienced local guide." },
                   ].map((item) => (
                     <Link key={item.city} to={item.href} className="block group">
                       <Card className="bg-gradient-cta border-0 text-primary-foreground shadow-soft h-full card-hover">
                         <CardContent className="p-6 flex flex-col h-full">
-                          <div className="flex items-start justify-between mb-3">
+                          <div className="flex items-start justify-between mb-4">
                             <div className="flex items-center justify-center w-10 h-10 rounded-xl bg-primary-foreground/15">
                               <Users className="w-5 h-5 text-primary-foreground" />
                             </div>
                             <ChevronRight className="w-4 h-4 text-primary-foreground/40 group-hover:text-primary-foreground group-hover:translate-x-1 transition-all duration-200" />
                           </div>
-                          <div className="font-display font-bold text-xl text-primary-foreground mb-1">From {item.city}</div>
-                          <p className="text-primary-foreground/65 font-body text-xs leading-relaxed flex-1">{item.desc}</p>
-                          <div className="mt-4 pt-3 border-t border-primary-foreground/15">
-                            <span className="text-xs font-semibold text-accent font-body">{item.count} listed →</span>
-                          </div>
-                        </CardContent>
-                      </Card>
-                    </Link>
-                  ))}
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  {[
-                    {
-                      name: "From Chania",
-                      href: "/Travel-Agencies-Chania.html",
-                      desc: "Multiple agencies in Chania offer organized day tours including transport, guide, and ferry return."
-                    },
-                    {
-                      name: "From Rethymnon",
-                      href: "/Travel-Agencies-Rethymnon.html",
-                      desc: "Organized tours departing from Rethymnon, pick-up often included from hotels."
-                    },
-                    {
-                      name: "From Heraklion",
-                      href: "/Travel-Agencies-Heraklion.html",
-                      desc: "Full-day tours from Heraklion include coach transfer and experienced local guide."
-                    },
-                    {
-                      name: "Private Certified Guide",
-                      href: "/How-to-get-there.html",
-                      desc: "Hire a certified mountain guide for a personalized, expert-led experience.",
-                      highlight: true
-                    },
-                  ].map((agency, i) => (
-                    <Link key={i} to={agency.href} className="block group">
-                      <Card className={`shadow-card h-full card-hover ${
-                        agency.highlight ? "border-accent/30 bg-accent-light/20" : "bg-card border-border"
-                      }`}>
-                        <CardContent className="p-6 flex flex-col h-full">
-                          <div className="flex items-start justify-between gap-4 mb-2">
-                            <h3 className="font-display font-semibold text-lg text-foreground">{agency.name}</h3>
-                            <div className="flex items-center gap-1 shrink-0">
-                              {agency.highlight && (
-                                <Badge className="bg-accent text-accent-foreground border-0">Premium</Badge>
-                              )}
-                              <ChevronRight className="w-4 h-4 text-muted-foreground group-hover:text-foreground group-hover:translate-x-1 transition-all duration-200" />
-                            </div>
-                          </div>
-                          <p className="text-sm text-muted-foreground font-body leading-relaxed flex-1">{agency.desc}</p>
-                          <div className="mt-4 pt-4 border-t border-border">
-                            <span className="text-sm font-medium text-primary font-body group-hover:underline">View agencies →</span>
+                          <div className="font-display font-bold text-xl text-primary-foreground mb-2">From {item.city}</div>
+                          <p className="text-primary-foreground/65 font-body text-sm leading-relaxed flex-1">{item.desc}</p>
+                          <div className="mt-5 pt-3 border-t border-primary-foreground/15">
+                            <span className="text-xs font-semibold font-body" style={{ color: 'hsl(var(--accent-light))' }}>{item.count} listed →</span>
                           </div>
                         </CardContent>
                       </Card>
@@ -309,7 +261,7 @@ export default function GetTherePage() {
                 </div>
 
                 {/* Private Guides */}
-                <div className="mt-8">
+                <div className="mt-2">
                   <h3 className="font-display font-semibold text-2xl text-foreground mb-5">Private Certified Guides</h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                     <GuideCard
