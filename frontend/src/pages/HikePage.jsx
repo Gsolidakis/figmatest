@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { Link } from "react-router-dom";
-import { Mountain, Clock, AlertTriangle, CheckCircle, Info, ChevronRight } from "lucide-react";
+import { Mountain, Clock, AlertTriangle, CheckCircle, Info, ChevronRight, Home } from "lucide-react";
 import { Card, CardContent } from "../components/ui/card";
 import { Badge } from "../components/ui/badge";
 import { Button } from "../components/ui/button";
@@ -303,10 +303,51 @@ export default function HikePage() {
 
             <Link to="/How-to-get-there.html">
               <Button className="w-full bg-primary text-primary-foreground hover:bg-primary/90 shadow-soft font-medium">
-                Plan Your Visit
+                Getting There
                 <ChevronRight className="w-4 h-4 ml-1" />
               </Button>
             </Link>
+
+            {/* Book Villa CTA */}
+            <Link to="/BookVilla.html" className="block group">
+              <Card className="border-accent/30 bg-accent-light/30 shadow-card card-hover cursor-pointer">
+                <CardContent className="p-5 flex items-start gap-3">
+                  <div className="flex items-center justify-center w-9 h-9 rounded-lg bg-accent/15 shrink-0">
+                    <Home className="w-4 h-4 text-accent" />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <div className="font-display font-semibold text-sm text-foreground">Stay 800m from the Gorge</div>
+                    <div className="text-xs text-muted-foreground font-body mt-0.5">Book a villa · €70/night · no commission</div>
+                  </div>
+                  <ChevronRight className="w-4 h-4 text-muted-foreground group-hover:translate-x-1 group-hover:text-foreground transition-all duration-200 shrink-0 mt-1" />
+                </CardContent>
+              </Card>
+            </Link>
+
+            {/* Organised Tours CTA */}
+            <Card className="border-border bg-card shadow-card">
+              <CardContent className="p-5">
+                <div className="font-display font-semibold text-sm text-foreground mb-3">Organised Day Tours</div>
+                <div className="space-y-2">
+                  {[
+                    { city: "Chania", href: "/Travel-Agencies-Chania.html" },
+                    { city: "Rethymnon", href: "/Travel-Agencies-Rethymnon.html" },
+                    { city: "Heraklion", href: "/Travel-Agencies-Heraklion.html" },
+                  ].map((item) => (
+                    <Link
+                      key={item.city}
+                      to={item.href}
+                      className="flex items-center justify-between py-2 px-3 rounded-lg hover:bg-muted transition-colors group"
+                    >
+                      <span className="text-sm text-muted-foreground font-body group-hover:text-foreground transition-colors">
+                        From {item.city}
+                      </span>
+                      <ChevronRight className="w-3.5 h-3.5 text-muted-foreground group-hover:translate-x-0.5 group-hover:text-primary transition-all duration-200" />
+                    </Link>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </div>

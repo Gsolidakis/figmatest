@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { motion, useInView } from "framer-motion";
-import { ArrowDown, MapPin, Clock, Calendar, Mountain, ChevronRight, Waves, TreePine, Star, Shield, AlertCircle } from "lucide-react";
+import { ArrowDown, MapPin, Clock, Calendar, Mountain, ChevronRight, Waves, TreePine, Star, Shield, AlertCircle, Bus, Home, Users } from "lucide-react";
 import { Button } from "../components/ui/button";
 import { Badge } from "../components/ui/badge";
 import { Card, CardContent } from "../components/ui/card";
@@ -174,6 +174,9 @@ export default function HomePage() {
 
       {/* TRAIL ROUTE */}
       <TrailRouteSection />
+
+      {/* PLAN YOUR TRIP */}
+      <PlanYourTripSection />
 
       {/* GALLERY TEASER */}
       <GalleryTeaser />
@@ -556,6 +559,132 @@ function GalleryTeaser() {
     </section>
   );
 }
+
+function PlanYourTripSection() {
+  return (
+    <section className="py-24 bg-background">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <SectionReveal>
+          <motion.div variants={fadeUp} className="text-center mb-14">
+            <span className="section-label">Before You Go</span>
+            <h2 className="font-display font-bold text-4xl sm:text-5xl text-foreground mt-3 leading-tight">
+              Plan Your Trip
+            </h2>
+            <p className="text-muted-foreground font-body mt-4 max-w-2xl mx-auto">
+              Everything you need to organise your visit — from getting there to where to sleep.
+            </p>
+          </motion.div>
+
+          {/* Top row — two large cards */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+            {/* Getting There */}
+            <motion.div variants={fadeUp}>
+              <Link to="/How-to-get-there.html" className="block group">
+                <Card className="bg-gradient-cta border-0 text-primary-foreground shadow-glow h-full card-hover overflow-hidden relative">
+                  <div className="absolute inset-0 opacity-10 pointer-events-none"
+                    style={{ background: "radial-gradient(ellipse at bottom right, hsl(var(--accent)) 0%, transparent 70%)" }} />
+                  <CardContent className="p-8 flex flex-col h-full min-h-[220px]">
+                    <div className="flex items-center justify-between mb-4">
+                      <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-primary-foreground/15">
+                        <Bus className="w-6 h-6 text-primary-foreground" />
+                      </div>
+                      <ChevronRight className="w-5 h-5 text-primary-foreground/40 group-hover:text-primary-foreground group-hover:translate-x-1 transition-all duration-200" />
+                    </div>
+                    <h3 className="font-display font-bold text-2xl text-primary-foreground mb-2">How to Get There</h3>
+                    <p className="text-primary-foreground/70 font-body text-sm leading-relaxed flex-1">
+                      Buses from Chania, Sougia & Paleochora · Ferry timetables · Taxi contacts · Ticket prices
+                    </p>
+                    <div className="mt-6 flex flex-wrap gap-2">
+                      {["Bus from Chania", "Ferry Return", "By Car", "Taxi Boat"].map(tag => (
+                        <span key={tag} className="text-xs px-2.5 py-1 rounded-full bg-primary-foreground/15 text-primary-foreground/80 font-body">
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              </Link>
+            </motion.div>
+
+            {/* Book Villa */}
+            <motion.div variants={fadeUp}>
+              <Link to="/BookVilla.html" className="block group">
+                <Card className="bg-card border-border shadow-soft h-full card-hover overflow-hidden relative">
+                  <div className="absolute top-0 right-0 w-40 h-40 rounded-full pointer-events-none"
+                    style={{ background: "hsl(var(--accent-light))", filter: "blur(40px)", transform: "translate(30%, -30%)", opacity: 0.6 }} />
+                  <CardContent className="p-8 flex flex-col h-full min-h-[220px]">
+                    <div className="flex items-center justify-between mb-4">
+                      <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-accent-light">
+                        <Home className="w-6 h-6 text-accent" />
+                      </div>
+                      <ChevronRight className="w-5 h-5 text-muted-foreground group-hover:text-foreground group-hover:translate-x-1 transition-all duration-200" />
+                    </div>
+                    <h3 className="font-display font-bold text-2xl text-foreground mb-2">Book a Villa</h3>
+                    <p className="text-muted-foreground font-body text-sm leading-relaxed flex-1">
+                      Sleep 800m from the gorge entrance. Wake up early, start first, beat the crowd.
+                    </p>
+                    <div className="mt-6 flex items-center gap-4">
+                      <div>
+                        <div className="font-display font-bold text-3xl text-foreground">€70</div>
+                        <div className="text-xs text-muted-foreground font-body">per night · 4 persons</div>
+                      </div>
+                      <div className="h-10 w-px bg-border" />
+                      <div className="text-xs text-muted-foreground font-body">
+                        <div className="font-medium text-foreground text-sm">No booking fee</div>
+                        Contact owners directly
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </Link>
+            </motion.div>
+          </div>
+
+          {/* Bottom row — three agency cards */}
+          <motion.div variants={fadeUp} className="mb-6">
+            <div className="flex items-center gap-3 mb-4">
+              <span className="text-sm font-semibold text-muted-foreground font-body uppercase tracking-wider">Organised Tours</span>
+              <div className="flex-1 h-px bg-border" />
+            </div>
+          </motion.div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
+            {[
+              { city: "Chania", href: "/Travel-Agencies-Chania.html", count: "9 agencies", desc: "Closest city to the gorge. Most buses depart from here." },
+              { city: "Rethymnon", href: "/Travel-Agencies-Rethymnon.html", count: "4 agencies", desc: "Central Crete. Hotels often include gorge tours." },
+              { city: "Heraklion", href: "/Travel-Agencies-Heraklion.html", count: "4 agencies", desc: "Eastern Crete. Full-day coach trips available." },
+            ].map((item) => (
+              <motion.div key={item.city} variants={fadeUp}>
+                <Link to={item.href} className="block group">
+                  <Card className="bg-card border-border shadow-card card-hover h-full">
+                    <CardContent className="p-6 flex flex-col h-full">
+                      <div className="flex items-center justify-between mb-3">
+                        <div className="flex items-center gap-2">
+                          <div className="flex items-center justify-center w-9 h-9 rounded-lg bg-secondary/10">
+                            <Users className="w-4 h-4 text-secondary" />
+                          </div>
+                          <span className="font-display font-semibold text-lg text-foreground">
+                            From {item.city}
+                          </span>
+                        </div>
+                        <ChevronRight className="w-4 h-4 text-muted-foreground group-hover:text-foreground group-hover:translate-x-1 transition-all duration-200" />
+                      </div>
+                      <p className="text-sm text-muted-foreground font-body leading-relaxed flex-1">{item.desc}</p>
+                      <div className="mt-4 pt-4 border-t border-border">
+                        <span className="text-xs font-semibold text-accent font-body">{item.count} listed</span>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </Link>
+              </motion.div>
+            ))}
+          </div>
+        </SectionReveal>
+      </div>
+    </section>
+  );
+}
+
 
 function CTASection() {
   return (

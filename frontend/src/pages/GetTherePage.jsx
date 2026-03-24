@@ -1,7 +1,7 @@
 import { useState, useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { Link } from "react-router-dom";
-import { Car, Bus, Ship, MapPin, Phone, ChevronRight, ExternalLink, Home, Users } from "lucide-react";
+import { Car, Bus, Ship, MapPin, Phone, ChevronRight, ExternalLink, Home, Users, Link as LinkIcon } from "lucide-react";
 import { Card, CardContent } from "../components/ui/card";
 import { Badge } from "../components/ui/badge";
 import { Button } from "../components/ui/button";
@@ -233,6 +233,33 @@ export default function GetTherePage() {
 
               {/* Tours */}
               <TabsContent value="tour">
+                {/* City CTA cards — linked */}
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
+                  {[
+                    { city: "Chania", href: "/Travel-Agencies-Chania.html", count: "9 agencies", desc: "Closest city · most buses depart from here" },
+                    { city: "Rethymnon", href: "/Travel-Agencies-Rethymnon.html", count: "4 agencies", desc: "Central Crete · hotel pick-up often included" },
+                    { city: "Heraklion", href: "/Travel-Agencies-Heraklion.html", count: "4 agencies", desc: "Eastern Crete · full-day coach trips" },
+                  ].map((item) => (
+                    <Link key={item.city} to={item.href} className="block group">
+                      <Card className="bg-gradient-cta border-0 text-primary-foreground shadow-soft h-full card-hover">
+                        <CardContent className="p-6 flex flex-col h-full">
+                          <div className="flex items-start justify-between mb-3">
+                            <div className="flex items-center justify-center w-10 h-10 rounded-xl bg-primary-foreground/15">
+                              <Users className="w-5 h-5 text-primary-foreground" />
+                            </div>
+                            <ChevronRight className="w-4 h-4 text-primary-foreground/40 group-hover:text-primary-foreground group-hover:translate-x-1 transition-all duration-200" />
+                          </div>
+                          <div className="font-display font-bold text-xl text-primary-foreground mb-1">From {item.city}</div>
+                          <p className="text-primary-foreground/65 font-body text-xs leading-relaxed flex-1">{item.desc}</p>
+                          <div className="mt-4 pt-3 border-t border-primary-foreground/15">
+                            <span className="text-xs font-semibold text-accent font-body">{item.count} listed →</span>
+                          </div>
+                        </CardContent>
+                      </Card>
+                    </Link>
+                  ))}
+                </div>
+
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {[
                     {
@@ -257,24 +284,27 @@ export default function GetTherePage() {
                       highlight: true
                     },
                   ].map((agency, i) => (
-                    <Card key={i} className={`shadow-card ${
-                      agency.highlight ? "border-accent/30 bg-accent-light/20" : "bg-card border-border"
-                    }`}>
-                      <CardContent className="p-6">
-                        <div className="flex items-start justify-between gap-4">
-                          <div>
-                            <h3 className="font-display font-semibold text-lg text-foreground mb-2">{agency.name}</h3>
-                            <p className="text-sm text-muted-foreground font-body leading-relaxed">{agency.desc}</p>
+                    <Link key={i} to={agency.href} className="block group">
+                      <Card className={`shadow-card h-full card-hover ${
+                        agency.highlight ? "border-accent/30 bg-accent-light/20" : "bg-card border-border"
+                      }`}>
+                        <CardContent className="p-6 flex flex-col h-full">
+                          <div className="flex items-start justify-between gap-4 mb-2">
+                            <h3 className="font-display font-semibold text-lg text-foreground">{agency.name}</h3>
+                            <div className="flex items-center gap-1 shrink-0">
+                              {agency.highlight && (
+                                <Badge className="bg-accent text-accent-foreground border-0">Premium</Badge>
+                              )}
+                              <ChevronRight className="w-4 h-4 text-muted-foreground group-hover:text-foreground group-hover:translate-x-1 transition-all duration-200" />
+                            </div>
                           </div>
-                          {agency.highlight && (
-                            <Badge className="bg-accent text-accent-foreground border-0 shrink-0">Premium</Badge>
-                          )}
-                        </div>
-                        <div className="mt-4 pt-4 border-t border-border">
-                          <div className="text-xs text-muted-foreground font-body">Contact travel agencies for current pricing</div>
-                        </div>
-                      </CardContent>
-                    </Card>
+                          <p className="text-sm text-muted-foreground font-body leading-relaxed flex-1">{agency.desc}</p>
+                          <div className="mt-4 pt-4 border-t border-border">
+                            <span className="text-sm font-medium text-primary font-body group-hover:underline">View agencies →</span>
+                          </div>
+                        </CardContent>
+                      </Card>
+                    </Link>
                   ))}
                 </div>
 
@@ -444,6 +474,14 @@ export default function GetTherePage() {
                         <svg className="w-4 h-4 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
                         samaria-village@outlook.com
                       </a>
+                      <div className="pt-2">
+                        <Link to="/BookVilla.html">
+                          <Button className="bg-accent text-accent-foreground hover:bg-accent/90 shadow-accent w-full sm:w-auto font-medium">
+                            View Full Villa Details
+                            <ChevronRight className="w-4 h-4 ml-1" />
+                          </Button>
+                        </Link>
+                      </div>
                     </div>
                   </div>
                   <div className="bg-primary/5 flex items-center justify-center p-8">

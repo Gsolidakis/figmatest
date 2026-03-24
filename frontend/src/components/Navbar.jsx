@@ -1,11 +1,13 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, Mountain, Camera, MapPin, HelpCircle, Navigation } from "lucide-react";
+import { Menu, X, Mountain, Camera, MapPin, HelpCircle, Navigation, ChevronDown, Bus, Home, Users } from "lucide-react";
 import { Button } from "./ui/button";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [planOpen, setPlanOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const planRef = useRef(null);
   const location = useLocation();
   const isHome = location.pathname === "/";
 
@@ -15,15 +17,32 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const navLinks = [
+  // Close dropdown on outside click
+  useEffect(() => {
+    const handleClick = (e) => {
+      if (planRef.current && !planRef.current.contains(e.target)) setPlanOpen(false);
+    };
+    document.addEventListener("mousedown", handleClick);
+    return () => document.removeEventListener("mousedown", handleClick);
+  }, []);
+
+  const mainLinks = [
     { href: "/", label: "Home", icon: Mountain },
     { href: "/The-Hike.html", label: "The Hike", icon: Navigation },
-    { href: "/How-to-get-there.html", label: "Getting There", icon: MapPin },
     { href: "/Live-camera.html", label: "Live Cameras", icon: Camera },
     { href: "/Gallery.html", label: "Gallery", icon: Camera },
     { href: "/FAQ.html", label: "FAQ", icon: HelpCircle },
   ];
 
+  const planLinks = [
+    { href: "/How-to-get-there.html", label: "How to Get There", icon: Bus, desc: "Transport, timetables & prices" },
+    { href: "/BookVilla.html", label: "Book a Villa", icon: Home, desc: "800m from the gorge entrance" },
+    { href: "/Travel-Agencies-Chania.html", label: "Tours from Chania", icon: Users, desc: "Organised day trips" },
+    { href: "/Travel-Agencies-Rethymnon.html", label: "Tours from Rethymnon", icon: Users, desc: "Organised day trips" },
+    { href: "/Travel-Agencies-Heraklion.html", label: "Tours from Heraklion", icon: Users, desc: "Organised day trips" },
+  ];
+
+  const isPlanActive = planLinks.some(l => location.pathname === l.href);
   const isScrolledOrNotHome = scrolled || !isHome;
 
   return (
@@ -63,7 +82,7 @@ export default function Navbar() {
 
           {/* Desktop Nav */}
           <nav className="hidden lg:flex items-center gap-1">
-            {navLinks.map((link) => (
+            {mainLinks.map((link) => (
               <Link
                 key={link.href}
                 to={link.href}
@@ -80,10 +99,75 @@ export default function Navbar() {
                 {link.label}
               </Link>
             ))}
+
+            {/* Plan Your Visit Dropdown */}
+            <div className="relative" ref={planRef}>
+              <button
+                onClick={() => setPlanOpen(!planOpen)}
+                className={`flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-medium transition-colors duration-200 ${
+                  isPlanActive
+                    ? isScrolledOrNotHome
+                      ? "bg-primary/10 text-primary"
+                      : "bg-primary-foreground/20 text-primary-foreground"
+                    : isScrolledOrNotHome
+                    ? "text-foreground/70 hover:text-foreground hover:bg-muted"
+                    : "text-primary-foreground/80 hover:text-primary-foreground hover:bg-primary-foreground/10"
+                }`}
+              >
+                Plan Your Visit
+                <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${planOpen ? "rotate-180" : ""}`} />
+              </button>
+
+              {/* Dropdown panel */}
+              {planOpen && (
+                <div className="absolute top-full right-0 mt-2 w-72 bg-card border border-border rounded-xl shadow-elevated z-50 overflow-hidden">
+                  <div className="p-2">
+                    {planLinks.map((link) => {
+                      const Icon = link.icon;
+                      return (
+                        <Link
+                          key={link.href}
+                          to={link.href}
+                          onClick={() => setPlanOpen(false)}
+                          className={`flex items-start gap-3 px-3 py-2.5 rounded-lg transition-colors group ${
+                            location.pathname === link.href
+                              ? "bg-primary/10"
+                              : "hover:bg-muted"
+                          }`}
+                        >
+                          <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-primary/10 shrink-0 mt-0.5 group-hover:bg-primary/15 transition-colors">
+                            <Icon className="w-4 h-4 text-primary" />
+                          </div>
+                          <div>
+                            <div className={`text-sm font-medium font-body ${location.pathname === link.href ? "text-primary" : "text-foreground"}`}>
+                              {link.label}
+                            </div>
+                            <div className="text-xs text-muted-foreground font-body mt-0.5">{link.desc}</div>
+                          </div>
+                        </Link>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
+            </div>
           </nav>
 
           {/* CTA */}
           <div className="hidden lg:flex items-center gap-3">
+            <Link to="/BookVilla.html">
+              <Button
+                size="sm"
+                variant="outline"
+                className={`font-medium transition-all duration-200 ${
+                  isScrolledOrNotHome
+                    ? "border-border text-foreground hover:bg-muted"
+                    : "border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10"
+                }`}
+              >
+                Book Villa
+              </Button>
+            </Link>
             <Link to="/How-to-get-there.html">
               <Button
                 size="sm"
@@ -117,7 +201,7 @@ export default function Navbar() {
       {isOpen && (
         <div className="lg:hidden bg-card border-t border-border shadow-elevated">
           <nav className="max-w-7xl mx-auto px-4 py-4 flex flex-col gap-1">
-            {navLinks.map((link) => {
+            {mainLinks.map((link) => {
               const Icon = link.icon;
               return (
                 <Link
@@ -135,11 +219,44 @@ export default function Navbar() {
                 </Link>
               );
             })}
-            <Link to="/How-to-get-there.html" onClick={() => setIsOpen(false)}>
-              <Button className="w-full mt-2 bg-primary text-primary-foreground">
+
+            {/* Plan Your Visit group in mobile */}
+            <div className="mt-2 pt-2 border-t border-border">
+              <div className="px-4 py-1.5 text-xs font-semibold text-muted-foreground uppercase tracking-wider font-body">
                 Plan Your Visit
-              </Button>
-            </Link>
+              </div>
+              {planLinks.map((link) => {
+                const Icon = link.icon;
+                return (
+                  <Link
+                    key={link.href}
+                    to={link.href}
+                    onClick={() => setIsOpen(false)}
+                    className={`flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition-colors ${
+                      location.pathname === link.href
+                        ? "bg-primary/10 text-primary"
+                        : "text-foreground/70 hover:text-foreground hover:bg-muted"
+                    }`}
+                  >
+                    <Icon className="w-4 h-4" />
+                    {link.label}
+                  </Link>
+                );
+              })}
+            </div>
+
+            <div className="flex gap-2 mt-2">
+              <Link to="/BookVilla.html" onClick={() => setIsOpen(false)} className="flex-1">
+                <Button variant="outline" className="w-full border-border text-foreground">
+                  Book Villa
+                </Button>
+              </Link>
+              <Link to="/How-to-get-there.html" onClick={() => setIsOpen(false)} className="flex-1">
+                <Button className="w-full bg-primary text-primary-foreground">
+                  Getting There
+                </Button>
+              </Link>
+            </div>
           </nav>
         </div>
       )}
