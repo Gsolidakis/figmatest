@@ -5,6 +5,7 @@ import { ArrowDown, MapPin, Clock, Calendar, Mountain, ChevronRight, Waves, Tree
 import { Button } from "../components/ui/button";
 import { Badge } from "../components/ui/badge";
 import { Card, CardContent } from "../components/ui/card";
+import SEOHead, { touristAttractionSchema } from "../components/SEOHead";
 
 const HERO_IMAGE = "https://images.pexels.com/photos/17603759/pexels-photo-17603759.jpeg";
 const IRON_GATES_IMG = "https://images.unsplash.com/photo-1715974336759-fab78c6e21dc?w=800";
@@ -35,6 +36,12 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen bg-background">
+      <SEOHead
+        title="Samaria Gorge National Park — Official Website"
+        description="Official website of Samaria Gorge National Park, Crete. Europe's longest gorge, a UNESCO Biosphere Reserve. Hike information, opening hours, ticket prices, timetables, travel agencies and accommodation."
+        canonical="/index.html"
+        jsonLd={touristAttractionSchema}
+      />
       {/* HERO */}
       <section ref={heroRef} className="relative h-screen min-h-[640px] max-h-[900px] overflow-hidden flex items-end">
         {/* Parallax image */}
@@ -100,7 +107,7 @@ export default function HomePage() {
             </motion.div>
 
             <motion.div variants={fadeUp} className="flex flex-wrap gap-4">
-              <Link to="/hike">
+              <Link to="/The-Hike.html">
                 <Button
                   size="lg"
                   className="bg-accent text-accent-foreground hover:bg-accent/90 shadow-accent font-medium px-8"
@@ -109,7 +116,7 @@ export default function HomePage() {
                   <ChevronRight className="w-4 h-4 ml-1" />
                 </Button>
               </Link>
-              <Link to="/get-there">
+              <Link to="/How-to-get-there.html">
                 <Button
                   size="lg"
                   variant="outline"
@@ -483,7 +490,7 @@ function TrailRouteSection() {
           </div>
 
           <motion.div variants={fadeUp} className="text-center mt-12">
-            <Link to="/hike">
+            <Link to="/The-Hike.html">
               <Button className="bg-primary text-primary-foreground hover:bg-primary/90 shadow-soft font-medium px-8">
                 Full Hike Details
                 <ChevronRight className="w-4 h-4 ml-1" />
@@ -515,7 +522,7 @@ function GalleryTeaser() {
                 Through the Lens
               </h2>
             </div>
-            <Link to="/gallery">
+            <Link to="/Gallery.html">
               <Button variant="outline" className="border-border text-foreground hover:bg-muted hidden sm:flex items-center gap-2">
                 View Gallery
                 <ChevronRight className="w-4 h-4" />
@@ -577,7 +584,7 @@ function CTASection() {
               for one of Greece's greatest natural adventures.
             </p>
             <div className="flex flex-wrap gap-4 justify-center">
-              <Link to="/get-there">
+              <Link to="/How-to-get-there.html">
                 <Button
                   size="lg"
                   className="bg-accent text-accent-foreground hover:bg-accent/90 shadow-accent font-medium px-10"
@@ -586,7 +593,7 @@ function CTASection() {
                   <ChevronRight className="w-4 h-4 ml-1" />
                 </Button>
               </Link>
-              <Link to="/hike">
+              <Link to="/The-Hike.html">
                 <Button
                   size="lg"
                   variant="outline"

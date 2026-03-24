@@ -5,6 +5,7 @@ import { ChevronRight, Mail } from "lucide-react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "../components/ui/accordion";
 import { Card, CardContent } from "../components/ui/card";
 import { Button } from "../components/ui/button";
+import SEOHead, { faqSchema, breadcrumbSchema } from "../components/SEOHead";
 
 const HERO_FAQ = "https://images.pexels.com/photos/13671191/pexels-photo-13671191.jpeg";
 
@@ -106,6 +107,12 @@ const faqs = [
 export default function FAQPage() {
   return (
     <div className="min-h-screen bg-background">
+      <SEOHead
+        title="FAQ — Samaria Gorge Frequently Asked Questions"
+        description="Answers to the most common questions about Samaria Gorge: opening hours, ticket prices, how to book, hike difficulty, what to bring, mobile signal, water, toilets and more."
+        canonical="/FAQ.html"
+        jsonLd={faqSchema(faqs.flatMap(s => s.questions))}
+      />
       {/* Hero */}
       <section className="relative h-72 sm:h-80 overflow-hidden flex items-end">
         <div className="absolute inset-0">

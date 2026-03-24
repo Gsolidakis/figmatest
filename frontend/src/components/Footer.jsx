@@ -42,10 +42,13 @@ export default function Footer() {
             <ul className="space-y-3">
               {[
                 { to: "/", label: "Home" },
-                { to: "/hike", label: "The Hike" },
-                { to: "/get-there", label: "Getting There" },
-                { to: "/gallery", label: "Gallery" },
-                { to: "/faq", label: "FAQ" },
+                { to: "/The-Hike.html", label: "The Hike" },
+                { to: "/How-to-get-there.html", label: "Getting There" },
+                { to: "/Live-camera.html", label: "Live Cameras" },
+                { to: "/Gallery.html", label: "Gallery" },
+                { to: "/BookVilla.html", label: "Book Villa" },
+                { to: "/FAQ.html", label: "FAQ" },
+                { to: "/Disclaimer.html", label: "Disclaimer" },
               ].map(link => (
                 <li key={link.to}>
                   <Link

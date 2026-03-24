@@ -1,11 +1,11 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { Link } from "react-router-dom";
-import { Mountain, Clock, AlertTriangle, CheckCircle, Info, ChevronRight, Flame } from "lucide-react";
+import { Mountain, Clock, AlertTriangle, CheckCircle, Info, ChevronRight } from "lucide-react";
 import { Card, CardContent } from "../components/ui/card";
 import { Badge } from "../components/ui/badge";
 import { Button } from "../components/ui/button";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "../components/ui/accordion";
+import SEOHead, { hikeSchema, breadcrumbSchema } from "../components/SEOHead";
 
 const HERO_HIKE = "https://images.unsplash.com/photo-1718135458959-e2d9d7faa3c3?w=1200";
 const TRAIL_IMG = "https://images.unsplash.com/photo-1530717385694-f05b16123c4a?w=800";
@@ -33,6 +33,12 @@ const SectionReveal = ({ children, className = "" }) => {
 export default function HikePage() {
   return (
     <div className="min-h-screen bg-background">
+      <SEOHead
+        title="The Hike — Samaria Gorge Trail Guide"
+        description="Complete guide to hiking Samaria Gorge. 16km trail from Xyloskalo (1250m) to Agia Roumeli. Safety instructions, route stops, difficulty, equipment list and opening hours."
+        canonical="/The-Hike.html"
+        jsonLd={{ ...hikeSchema, breadcrumb: breadcrumbSchema([{ name: "Home", path: "/" }, { name: "The Hike", path: "/The-Hike.html" }]) }}
+      />
       {/* Hero */}
       <section className="relative h-72 sm:h-96 overflow-hidden flex items-end">
         <div className="absolute inset-0">
@@ -295,7 +301,7 @@ export default function HikePage() {
               </CardContent>
             </Card>
 
-            <Link to="/get-there">
+            <Link to="/How-to-get-there.html">
               <Button className="w-full bg-primary text-primary-foreground hover:bg-primary/90 shadow-soft font-medium">
                 Plan Your Visit
                 <ChevronRight className="w-4 h-4 ml-1" />

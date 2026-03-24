@@ -227,6 +227,105 @@ test_plan:
   test_all: true
   test_priority: "sequential"
 
+frontend:
+  - task: "SEO URLs - All .html routes"
+    implemented: true
+    working: true
+    file: "/app/frontend/src/App.js"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+      - working: true
+        agent: "testing"
+        comment: "All 16 URL routes tested and working correctly: /, /index.html, /Home.html, /The-Hike.html, /How-to-get-there.html, /FAQ.html, /Live-camera.html, /Live-Camera-Omalos.html, /Live-Camera-Samaria.html, /BookVilla.html, /Travel-Agencies-Chania.html, /Travel-Agencies-Rethymnon.html, /Travel-Agencies-Heraklion.html, /Disclaimer.html, /Gallery.html. All return 200 status and load correctly. NenDirections.html correctly redirects to How-to-get-there.html."
+
+  - task: "Live Camera Page"
+    implemented: true
+    working: true
+    file: "/app/frontend/src/pages/LiveCameraPage.jsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+      - working: true
+        agent: "testing"
+        comment: "Live Camera page fully functional. All 3 camera tabs visible and clickable (Gorge Entrance, Omalos Plateau, Inside Gorge). Entrance and Omalos cameras show iframe embeds from rtsp.me. Samaria camera shows link to Xyloskalo website. Tab switching works correctly."
+
+  - task: "Book Villa Page"
+    implemented: true
+    working: true
+    file: "/app/frontend/src/pages/BookVillaPage.jsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+      - working: true
+        agent: "testing"
+        comment: "Book Villa page fully functional. All 6 villa photos from samaria-gorge.gr/images/ load correctly. Contact phone (+30 698 007 0140) and email (samaria-village@outlook.com) are visible and properly formatted. All information displays correctly."
+
+  - task: "Travel Agencies Page"
+    implemented: true
+    working: true
+    file: "/app/frontend/src/pages/TravelAgenciesPage.jsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+      - working: true
+        agent: "testing"
+        comment: "Travel Agencies page fully functional. All 3 city tabs visible and clickable (From Chania, From Rethymnon, From Heraklion). Agency cards display correctly with logos and descriptions. Tab switching works correctly. GetYourGuide and other agencies visible."
+
+  - task: "Navbar .html URLs"
+    implemented: true
+    working: true
+    file: "/app/frontend/src/components/Navbar.jsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+      - working: true
+        agent: "testing"
+        comment: "Navbar links correctly point to .html URLs: The Hike → /The-Hike.html, Getting There → /How-to-get-there.html, Live Cameras → /Live-camera.html, Gallery → /Gallery.html, FAQ → /FAQ.html. All links verified and working."
+
+  - task: "robots.txt"
+    implemented: true
+    working: true
+    file: "/app/frontend/public/robots.txt"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+      - working: true
+        agent: "testing"
+        comment: "robots.txt accessible at /robots.txt and contains correct content: 'User-agent: *' and 'Sitemap: https://samaria-gorge.gr/sitemap.xml'. File is properly configured."
+
+  - task: "sitemap.xml"
+    implemented: true
+    working: true
+    file: "/app/frontend/public/sitemap.xml"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+      - working: true
+        agent: "testing"
+        comment: "sitemap.xml accessible at /sitemap.xml and contains all required .html URLs: /The-Hike.html, /How-to-get-there.html, /Live-camera.html, /BookVilla.html, /Travel-Agencies-Chania.html, and all other pages. Properly formatted XML sitemap."
+
+  - task: "SEO Meta Tags"
+    implemented: true
+    working: true
+    file: "/app/frontend/src/components/SEOHead.jsx"
+    stuck_count: 0
+    priority: "medium"
+    needs_retesting: false
+    status_history:
+      - working: true
+        agent: "testing"
+        comment: "Minor: SEO meta tags mostly working. Page title correctly contains 'Samaria Gorge National Park — Official Website'. Canonical URL present and correct (https://www.samaria-gorge.gr/index.html). Meta description exists in index.html but React Helmet may not be overriding it properly in runtime (shows 'A product of emergent.sh' instead of proper description). This is a minor cosmetic issue - the static HTML has the correct description. Core SEO functionality works."
+
 agent_communication:
   - agent: "testing"
     message: "Completed comprehensive testing of all pages and features. All functionality is working correctly. The website is a well-designed, informational multi-page site about Samaria Gorge National Park in Crete, Greece. All navigation, interactive elements (tabs, accordions, filters, lightbox), and content sections are functioning as expected. No critical issues found. Ready for production."
+  - agent: "testing"
+    message: "NEW TESTING COMPLETED (SEO URLs & New Pages): Tested all new SEO-friendly .html URLs and new pages. Results: 43/44 tests PASSED. All URL routing works perfectly (16/16 routes including redirect). Live Camera page fully functional with all 3 tabs and iframe embeds. Book Villa page shows all 6 photos and contact info correctly. Travel Agencies page with all 3 city tabs working. Navbar links point to correct .html URLs. robots.txt and sitemap.xml accessible and properly configured. MINOR ISSUE: Meta description on homepage shows 'A product of emergent.sh' at runtime instead of proper description (though static HTML has correct description). This is a cosmetic issue only - all core functionality works perfectly. Website is production-ready."

@@ -5,6 +5,7 @@ import { ChevronRight, X } from "lucide-react";
 import { useState } from "react";
 import { Dialog, DialogContent } from "../components/ui/dialog";
 import { Badge } from "../components/ui/badge";
+import SEOHead, { breadcrumbSchema } from "../components/SEOHead";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -87,6 +88,12 @@ export default function GalleryPage() {
 
   return (
     <div className="min-h-screen bg-background">
+      <SEOHead
+        title="Gallery — Samaria Gorge Photos"
+        description="Photo gallery of Samaria Gorge National Park. See the Iron Gates, Kri-Kri mountain goats, the gorge trail, Agia Roumeli coastal village, and the White Mountains of Crete."
+        canonical="/Gallery.html"
+        jsonLd={breadcrumbSchema([{ name: "Home", path: "/" }, { name: "Gallery", path: "/Gallery.html" }])}
+      />
       {/* Hero */}
       <section className="relative h-64 sm:h-80 overflow-hidden flex items-end">
         <div className="absolute inset-0">

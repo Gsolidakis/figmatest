@@ -17,10 +17,11 @@ export default function Navbar() {
 
   const navLinks = [
     { href: "/", label: "Home", icon: Mountain },
-    { href: "/hike", label: "The Hike", icon: Navigation },
-    { href: "/get-there", label: "Getting There", icon: MapPin },
-    { href: "/gallery", label: "Gallery", icon: Camera },
-    { href: "/faq", label: "FAQ", icon: HelpCircle },
+    { href: "/The-Hike.html", label: "The Hike", icon: Navigation },
+    { href: "/How-to-get-there.html", label: "Getting There", icon: MapPin },
+    { href: "/Live-camera.html", label: "Live Cameras", icon: Camera },
+    { href: "/Gallery.html", label: "Gallery", icon: Camera },
+    { href: "/FAQ.html", label: "FAQ", icon: HelpCircle },
   ];
 
   const isScrolledOrNotHome = scrolled || !isHome;
@@ -83,7 +84,7 @@ export default function Navbar() {
 
           {/* CTA */}
           <div className="hidden lg:flex items-center gap-3">
-            <Link to="/get-there">
+            <Link to="/How-to-get-there.html">
               <Button
                 size="sm"
                 className={`font-medium transition-all duration-200 ${
@@ -134,7 +135,7 @@ export default function Navbar() {
                 </Link>
               );
             })}
-            <Link to="/get-there" onClick={() => setIsOpen(false)}>
+            <Link to="/How-to-get-there.html" onClick={() => setIsOpen(false)}>
               <Button className="w-full mt-2 bg-primary text-primary-foreground">
                 Plan Your Visit
               </Button>

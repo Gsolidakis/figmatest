@@ -7,6 +7,7 @@ import { Badge } from "../components/ui/badge";
 import { Button } from "../components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../components/ui/tabs";
 import { Separator } from "../components/ui/separator";
+import SEOHead, { breadcrumbSchema } from "../components/SEOHead";
 
 const HERO_TRANSPORT = "https://images.pexels.com/photos/13459802/pexels-photo-13459802.jpeg";
 
@@ -29,6 +30,12 @@ const SectionReveal = ({ children, className = "" }) => {
 export default function GetTherePage() {
   return (
     <div className="min-h-screen bg-background">
+      <SEOHead
+        title="How to Get to Samaria Gorge — Transport, Tickets & Prices"
+        description="All transport options to Samaria Gorge: buses from Chania, Sougia and Paleochora, ferry timetables, ticket prices, taxi contacts, travel agencies, and villa accommodation near the gorge entrance."
+        canonical="/How-to-get-there.html"
+        jsonLd={breadcrumbSchema([{ name: "Home", path: "/" }, { name: "How to Get There", path: "/How-to-get-there.html" }])}
+      />
       {/* Hero */}
       <section className="relative h-72 sm:h-96 overflow-hidden flex items-end">
         <div className="absolute inset-0">
@@ -230,22 +237,22 @@ export default function GetTherePage() {
                   {[
                     {
                       name: "From Chania",
-                      href: "/get-there",
+                      href: "/Travel-Agencies-Chania.html",
                       desc: "Multiple agencies in Chania offer organized day tours including transport, guide, and ferry return."
                     },
                     {
                       name: "From Rethymnon",
-                      href: "/get-there",
+                      href: "/Travel-Agencies-Rethymnon.html",
                       desc: "Organized tours departing from Rethymnon, pick-up often included from hotels."
                     },
                     {
                       name: "From Heraklion",
-                      href: "/get-there",
+                      href: "/Travel-Agencies-Heraklion.html",
                       desc: "Full-day tours from Heraklion include coach transfer and experienced local guide."
                     },
                     {
                       name: "Private Certified Guide",
-                      href: "/get-there",
+                      href: "/How-to-get-there.html",
                       desc: "Hire a certified mountain guide for a personalized, expert-led experience.",
                       highlight: true
                     },
