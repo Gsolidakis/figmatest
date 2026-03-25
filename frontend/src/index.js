@@ -3,9 +3,12 @@ import ReactDOM from "react-dom/client";
 import "@/index.css";
 import App from "@/App";
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
+const rootElement = document.getElementById("root");
+
+// For react-snap compatibility
+const root = ReactDOM.createRoot(rootElement);
 root.render(
   <React.StrictMode>
     <App />
-  </React.StrictMode>,
+  </React.StrictMode>
 );

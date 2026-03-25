@@ -59,8 +59,41 @@
   },
   "scripts": {
     "start": "craco start",
-    "build": "craco build && node scripts/postbuild.js",
+    "build": "craco build",
+    "postbuild": "react-snap",
     "test": "craco test"
+  },
+  "reactSnap": {
+    "inlineCss": true,
+    "minifyHtml": {
+      "collapseWhitespace": false,
+      "removeComments": false
+    },
+    "crawlFrom": "/",
+    "include": [
+      "/",
+      "/index.html",
+      "/Home.html",
+      "/The-Hike.html",
+      "/How-to-get-there.html",
+      "/FAQ.html",
+      "/Gallery.html",
+      "/Live-camera.html",
+      "/Live-Camera-Omalos.html",
+      "/Live-Camera-Samaria.html",
+      "/BookVilla.html",
+      "/Travel-Agencies-Chania.html",
+      "/Travel-Agencies-Rethymnon.html",
+      "/Travel-Agencies-Heraklion.html",
+      "/Disclaimer.html"
+    ],
+    "skipThirdPartyRequests": true,
+    "cacheAjaxRequests": false,
+    "http2PushManifest": false,
+    "puppeteerArgs": [
+      "--no-sandbox",
+      "--disable-setuid-sandbox"
+    ]
   },
   "browserslist": {
     "production": [
@@ -74,6 +107,24 @@
       "last 1 safari version"
     ]
   },
+  "reactSnap": {
+    "inlineCss": false,
+    "minifyHtml": {
+      "collapseWhitespace": false,
+      "removeComments": false
+    },
+    "crawlFrom": "/",
+    "include": [
+      "/",
+      "/Home.html",
+      "/The-Hike.html"
+    ],
+    "skipThirdPartyRequests": true,
+    "cacheAjaxRequests": false,
+    "http2PushManifest": false,
+    "puppeteerExecutablePath": "/usr/bin/chromium",
+    "puppeteerArgs": ["--no-sandbox", "--disable-setuid-sandbox", "--disable-dev-shm-usage", "--disable-web-security"]
+  },
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@craco/craco": "^7.1.0",
@@ -86,6 +137,7 @@
     "eslint-plugin-react-hooks": "5.2.0",
     "globals": "15.15.0",
     "postcss": "^8.4.49",
+    "react-snap": "1.23.0",
     "tailwindcss": "^3.4.17"
   },
   "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
