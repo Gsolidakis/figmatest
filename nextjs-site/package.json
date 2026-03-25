@@ -1,0 +1,36 @@
+{
+  "name": "samaria-gorge-nextjs",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "export": "next build && next export",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@radix-ui/react-accordion": "^1.2.12",
+    "@radix-ui/react-dialog": "^1.1.15",
+    "@radix-ui/react-separator": "^1.1.8",
+    "@radix-ui/react-slot": "^1.2.4",
+    "@radix-ui/react-tabs": "^1.1.13",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "framer-motion": "^12.38.0",
+    "lucide-react": "^1.6.0",
+    "next": "^16.2.1",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "react-helmet-async": "^3.0.0",
+    "tailwind-merge": "^3.5.0"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.27",
+    "eslint": "^10.1.0",
+    "eslint-config-next": "^16.2.1",
+    "postcss": "^8.5.8",
+    "tailwindcss": "3",
+    "tailwindcss-animate": "^1.0.7"
+  }
+}
