@@ -1,6 +1,6 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import Link from "react-router-dom";
+import Link from "next/link";
 import { ChevronRight, X } from "lucide-react";
 import { useState } from "react";
 import { Dialog, DialogContent } from "../components/ui/dialog";

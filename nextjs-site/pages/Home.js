@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import Link from "react-router-dom";
+import Link from "next/link";
 import { motion, useInView } from "framer-motion";
 import { ArrowDown, MapPin, Clock, Calendar, Mountain, ChevronRight, Waves, TreePine, Star, Shield, AlertCircle, Bus, Home, Users } from "lucide-react";
 import { Button } from "../components/ui/button";

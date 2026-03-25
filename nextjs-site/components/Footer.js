@@ -1,4 +1,4 @@
-import Link from "react-router-dom";
+import Link from "next/link";
 import { Mail, Phone, MapPin, ExternalLink, ChevronRight } from "lucide-react";
 import { Separator } from "./ui/separator";
 

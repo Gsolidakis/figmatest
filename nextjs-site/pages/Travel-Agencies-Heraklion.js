@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import Link from "react-router-dom";
+import Link from "next/link";
 import { ChevronRight, ExternalLink } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../components/ui/tabs";
 import { Card, CardContent } from "../components/ui/card";

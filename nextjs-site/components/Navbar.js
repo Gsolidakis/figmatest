@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
-import { useLocation } from "react-router-dom";
+import { useRouter } from "next/router";
 import { Menu, X, Mountain, Camera, MapPin, HelpCircle, Navigation, ChevronDown, Home } from "lucide-react";
 import { Button } from "./ui/button";
 
@@ -9,8 +9,8 @@ export default function Navbar() {
   const [moreOpen, setMoreOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const moreRef = useRef(null);
-  const location = useLocation();
-  const isHome = location.pathname === "/";
+  const router = useRouter();
+  const isHome = router.pathname === "/" || router.pathname === "/index";
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 60);
@@ -39,8 +39,8 @@ export default function Navbar() {
     { href: "/BookVilla.html", label: "Book a Villa", icon: Home, desc: "800m from the entrance · €70/night" },
   ];
 
-  const isGetThere = location.pathname === "/How-to-get-there.html";
-  const isMoreActive = moreLinks.some(l => location.pathname === l.href);
+  const isGetThere = router.pathname === "/How-to-get-there.html";
+  const isMoreActive = moreLinks.some(l => router.pathname === l.href);
   const isScrolledOrNotHome = scrolled || !isHome;
 
   return (
@@ -83,7 +83,7 @@ export default function Navbar() {
                 key={link.href}
                 to={link.href}
                 className={`px-3.5 py-2 rounded-lg text-sm font-medium transition-colors duration-200 ${
-                  location.pathname === link.href
+                  router.pathname === link.href
                     ? isScrolledOrNotHome
                       ? "bg-primary/10 text-primary"
                       : "bg-primary-foreground/20 text-primary-foreground"
@@ -147,7 +147,7 @@ export default function Navbar() {
                           to={link.href}
                           onClick={() => setMoreOpen(false)}
                           className={`flex items-start gap-3 px-3 py-2.5 rounded-lg transition-colors group ${
-                            location.pathname === link.href ? "bg-primary/10" : "hover:bg-muted"
+                            router.pathname === link.href ? "bg-primary/10" : "hover:bg-muted"
                           }`}
                         >
                           <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-accent/15 shrink-0 mt-0.5">
@@ -155,7 +155,7 @@ export default function Navbar() {
                           </div>
                           <div>
                             <div className={`text-sm font-medium font-body ${
-                              location.pathname === link.href ? "text-primary" : "text-foreground"
+                              router.pathname === link.href ? "text-primary" : "text-foreground"
                             }`}>
                               {link.label}
                             </div>
@@ -228,7 +228,7 @@ export default function Navbar() {
                   to={link.href}
                   onClick={() => setIsOpen(false)}
                   className={`flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition-colors ${
-                    location.pathname === link.href
+                    router.pathname === link.href
                       ? "bg-primary/10 text-primary"
                       : "text-foreground/70 hover:text-foreground hover:bg-muted"
                   }`}
@@ -258,7 +258,7 @@ export default function Navbar() {
               href="/BookVilla.html"
               onClick={() => setIsOpen(false)}
               className={`flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition-colors ${
-                location.pathname === "/BookVilla.html"
+                router.pathname === "/BookVilla.html"
                   ? "bg-primary/10 text-primary"
                   : "text-foreground/70 hover:text-foreground hover:bg-muted"
               }`}

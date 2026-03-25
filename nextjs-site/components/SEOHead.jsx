@@ -1,8 +1,7 @@
-import { Helmet } from "react-helmet-async";
+import Head from "next/head";
 
 /**
- * SEOHead — centralised SEO meta tags for every page.
- * Covers: title, description, canonical, Open Graph, Twitter Card, JSON-LD
+ * SEOHead — centralised SEO meta tags for every page using Next.js Head
  */
 export default function SEOHead({
   title,
@@ -19,7 +18,7 @@ export default function SEOHead({
     : "https://www.samaria-gorge.gr/";
 
   return (
-    <Helmet>
+    <Head>
       {/* Primary */}
       <title>{fullTitle}</title>
       <meta name="description" content={description} />
@@ -44,91 +43,83 @@ export default function SEOHead({
 
       {/* JSON-LD structured data */}
       {jsonLd && (
-        <script type="application/ld+json">
-          {JSON.stringify(jsonLd)}
-        </script>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
       )}
-    </Helmet>
+    </Head>
   );
 }
 
-// ─── Reusable JSON-LD schemas ───────────────────────────────────────────────
-
+// Export schema objects for pages to use
 export const touristAttractionSchema = {
   "@context": "https://schema.org",
   "@type": "TouristAttraction",
-  "name": "Samaria Gorge",
-  "description": "Samaria Gorge is Europe's longest gorge, located in the White Mountains of Crete, Greece. A UNESCO Biosphere Reserve and home to the endemic Kri-Kri mountain goat.",
-  "url": "https://www.samaria-gorge.gr/",
-  "image": "https://images.pexels.com/photos/17603759/pexels-photo-17603759.jpeg",
-  "address": {
+  name: "Samaria Gorge",
+  description:
+    "Europe's longest gorge, a 16-kilometre UNESCO Biosphere Reserve hike through the White Mountains of Crete.",
+  url: "https://www.samaria-gorge.gr",
+  image: "https://images.pexels.com/photos/17603759/pexels-photo-17603759.jpeg",
+  address: {
     "@type": "PostalAddress",
-    "addressLocality": "Xyloskalo, Omalos",
-    "addressRegion": "Crete",
-    "addressCountry": "GR"
+    addressLocality: "Omalos",
+    addressRegion: "Crete",
+    addressCountry: "GR",
   },
-  "geo": {
+  geo: {
     "@type": "GeoCoordinates",
-    "latitude": "35.3081",
-    "longitude": "23.9726"
+    latitude: 35.3081,
+    longitude: 23.9726,
   },
-  "openingHoursSpecification": [
-    {
-      "@type": "OpeningHoursSpecification",
-      "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
-      "opens": "07:00",
-      "closes": "15:00",
-      "validFrom": "--05-01",
-      "validThrough": "--10-31"
-    }
-  ],
-  "touristType": ["Hikers", "Nature lovers", "Adventure travelers"],
-  "isAccessibleForFree": false,
-  "publicAccess": true,
-  "containedInPlace": {
-    "@type": "Park",
-    "name": "Samaria National Park"
-  }
+  openingHoursSpecification: {
+    "@type": "OpeningHoursSpecification",
+    dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+    opens: "07:00",
+    closes: "15:00",
+  },
 };
 
 export const hikeSchema = {
   "@context": "https://schema.org",
   "@type": "SportsEvent",
-  "name": "Samaria Gorge Hike",
-  "description": "Hike through the 16km Samaria Gorge in the White Mountains of Crete, from Xyloskalo (1250m) to the Libyan Sea at Agia Roumeli. Europe's longest gorge.",
-  "location": {
+  name: "Samaria Gorge Hike",
+  description: "Hike through the 16km Samaria Gorge in the White Mountains of Crete, from Xyloskalo (1250m) to the Libyan Sea at Agia Roumeli. Europe's longest gorge.",
+  location: {
     "@type": "Place",
-    "name": "Samaria Gorge",
-    "address": {
+    name: "Samaria Gorge",
+    address: {
       "@type": "PostalAddress",
-      "addressLocality": "Xyloskalo, Omalos",
-      "addressRegion": "Crete",
-      "addressCountry": "GR"
-    }
+      addressLocality: "Xyloskalo, Omalos",
+      addressRegion: "Crete",
+      addressCountry: "GR",
+    },
   },
-  "url": "https://www.samaria-gorge.gr/The-Hike.html"
+  url: "https://www.samaria-gorge.gr/The-Hike.html",
 };
 
 export const breadcrumbSchema = (items) => ({
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
-  "itemListElement": items.map((item, index) => ({
+  itemListElement: items.map((item, index) => ({
     "@type": "ListItem",
-    "position": index + 1,
-    "name": item.name,
-    "item": `https://www.samaria-gorge.gr${item.path}`
-  }))
+    position: index + 1,
+    name: item.name,
+    item: `https://www.samaria-gorge.gr${item.path}`,
+  })),
 });
 
 export const faqSchema = (faqs) => ({
   "@context": "https://schema.org",
   "@type": "FAQPage",
-  "mainEntity": faqs.map(faq => ({
+  mainEntity: faqs.map((faq) => ({
     "@type": "Question",
-    "name": faq.q,
-    "acceptedAnswer": {
+    name: faq.q || faq.question,
+    acceptedAnswer: {
       "@type": "Answer",
-      "text": faq.a
-    }
-  }))
+      text: faq.a || faq.answer,
+    },
+  })),
 });
+
+export const faqPageSchema = faqSchema;

@@ -1,6 +1,6 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import Link from "react-router-dom";
+import Link from "next/link";
 import { ChevronRight, Mail } from "lucide-react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "../components/ui/accordion";
 import { Card, CardContent } from "../components/ui/card";

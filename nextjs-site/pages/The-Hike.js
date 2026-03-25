@@ -1,6 +1,6 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import Link from "react-router-dom";
+import Link from "next/link";
 import { Mountain, Clock, AlertTriangle, CheckCircle, Info, ChevronRight, Home } from "lucide-react";
 import { Card, CardContent } from "../components/ui/card";
 import { Badge } from "../components/ui/badge";

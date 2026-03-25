@@ -1,0 +1,19 @@
+{
+  "/": "pages/index.js",
+  "/BookVilla": "pages/BookVilla.js",
+  "/Disclaimer": "pages/Disclaimer.js",
+  "/FAQ": "pages/FAQ.js",
+  "/Gallery": "pages/Gallery.js",
+  "/Home": "pages/Home.js",
+  "/How-to-get-there": "pages/How-to-get-there.js",
+  "/Live-Camera-Omalos": "pages/Live-Camera-Omalos.js",
+  "/Live-Camera-Samaria": "pages/Live-Camera-Samaria.js",
+  "/Live-camera": "pages/Live-camera.js",
+  "/The-Hike": "pages/The-Hike.js",
+  "/Travel-Agencies-Chania": "pages/Travel-Agencies-Chania.js",
+  "/Travel-Agencies-Heraklion": "pages/Travel-Agencies-Heraklion.js",
+  "/Travel-Agencies-Rethymnon": "pages/Travel-Agencies-Rethymnon.js",
+  "/_app": "pages/_app.js",
+  "/_document": "pages/_document.js",
+  "/_error": "pages/_error.js"
+}
